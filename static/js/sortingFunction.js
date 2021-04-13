@@ -2,7 +2,7 @@
 
 function quickSort(arr) {
     let middle = arr.length / 2;
-
+    return arr;
 }
 
 /* === Merge Sort === */

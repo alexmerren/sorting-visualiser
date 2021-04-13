@@ -1,4 +1,4 @@
-:root[color-mode="light"] {
+:root {
     --surface1: #e6e6e6;
     --surface2: #f2f2f2;
     --surface3: #ffffff;
@@ -8,18 +8,6 @@
     --primary: #f44336;
     --secondary: #448aff;
     --tertiary: #00a337;
-}
-
-:root[color-mode="dark"] {
-    --surface1: #262626;
-    --surface2: #333333;
-    --surface3: #404040;
-    --element1: #eeeeee;
-    --element2: #dddddd;
-    --element3: #cccccc;
-    --primary: #8b201d;
-    --secondary: #104c90;
-    --tertiary: #007a29;
 }
 
 /* == Global Styles === */
@@ -61,6 +49,11 @@ body {
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
+}
+
+.theme-toggle {
+    float: right;
+    margin: 2%;
 }
 
 .header__buttons {
