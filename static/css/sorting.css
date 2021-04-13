@@ -1,0 +1,96 @@
+@import "main.css";
+
+/* == Global Styles === */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* === Header === */
+
+.header {
+    width: 100%;
+    background-color: var(--surface2);
+    padding-bottom: 2em;
+}
+
+#title {
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    font-size: 3rem;
+    font-weight: 500;
+    text-align: center;
+    background-image: linear-gradient(45deg, var(--primary), var(--secondary));
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.header__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__buttons button,
+#arr-size {
+    background-color: var(--surface2);
+    border: 1px solid var(--element3);
+    border-radius: 10rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    font-weight: 400;
+}
+
+.header__buttons button:focus {
+    outline: 0;
+}
+
+.header__buttons button {
+    cursor: pointer;
+    transition:
+        background-color 250ms,
+        border 250ms
+    ;
+}
+
+.header__buttons button:hover {
+    background-color: var(--tertiary);
+    border: 1px solid var(--tertiary);
+}
+
+.header__buttons button:focus {
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+#arr-size {
+    background-color: var(--surface3);
+}
+
+
+/* === Canvas === */
+
+.canvas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    max-width: 90%;
+    margin: auto;
+}
+
+.bar {
+    background-color: var(--element3);
+    width: 10px;
+    margin: 0 1px;
+}
+
+

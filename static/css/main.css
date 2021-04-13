@@ -1,0 +1,253 @@
+/* === Color themes ===  */
+
+:root[color-mode="light"] {
+    --surface1: #e6e6e6;
+    --surface2: #f2f2f2;
+    --surface3: #ffffff;
+    --element1: #111111;
+    --element2: #222222;
+    --element3: #333333;
+    --primary: #f44336;
+    --secondary: #448aff;
+    --tertiary: #00a337;
+}
+
+:root[color-mode="dark"] {
+    --surface1: #262626;
+    --surface2: #333333;
+    --surface3: #404040;
+    --element1: #eeeeee;
+    --element2: #dddddd;
+    --element3: #cccccc;
+    --primary: #8b201d;
+    --secondary: #104c90;
+    --tertiary: #007a29;
+}
+
+/* === Global variables === */
+
+body {
+    background: var(--surface1);
+    margin: 0;
+}
+
+* {
+    font-weight: 200;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Helvetica,
+        sans-serif;
+    text-decoration: none;
+    color: var(--element1);
+}
+
+/* === Navbar === */
+
+.nav {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: -1px;
+    background-color: var(--surface2);
+}
+
+.nav a {
+    color: var(--element3);
+    padding: 1.4em;
+    font-weight: 400;
+}
+
+.nav > .active,
+.nav a:hover {
+    background-color: var(--surface3);
+    border-bottom: 2px solid var(--tertiary);
+}
+
+/* === Global Section === */
+
+.content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.content h2 {
+    margin-top: 5rem;
+    margin-bottom: 0.5em;
+    font-weight: 500;
+    font-size: 3rem;
+}
+
+/* === Home === */
+
+.theme-toggle {
+    float: right;
+    margin: 2%;
+}
+
+.title {
+    padding: 30vh 0;
+    text-align: center;
+}
+
+.title h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 500%;
+}
+
+#home {
+    background-color: var(--surface1);
+    height: 100vh;
+}
+
+#title__lead-up {
+    padding-right: 10px;
+}
+
+#title__name a {
+    font-weight: 600;
+    background-image: linear-gradient(45deg, var(--primary), var(--secondary));
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+#title__email a,
+#title__email {
+    font-weight: 400;
+    color: var(--element1);
+}
+
+#title__email a {
+    text-decoration: underline;
+}
+
+#title__button {
+    font-weight: 400;
+    margin: 5px;
+    border: 2px solid var(--element1);
+    padding: 10px;
+    display: inline-block;
+    width: 250px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    transition:
+        background-color 500ms,
+        border 500ms,
+        transform 500ms
+    ;
+    -webkit-transition:
+        background-color 500ms,
+        border 500ms,
+        transform 500ms
+    ;
+    -webkit-backface-visibility: hidden;
+}
+
+#title__button:hover {
+    background-color: var(--tertiary);
+    border: 2px solid var(--tertiary);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+
+#title__down-arrow {
+    display: none;
+    text-align: center;
+    font-size: 150%;
+}
+
+/* === Projects === */
+
+/* === About === */
+
+#about {
+    background-color: var(--surface2);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#about__inner__photo {
+    width: 25%;
+}
+
+#about__text {
+    margin-left: 2rem;
+    text-align: left;
+    line-height: 200%;
+    max-width: 30ch;
+}
+
+#about__inner {
+    margin-bottom: 3rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === Contact === */
+
+#contact {
+    height: 80vh;
+}
+
+/* === Footer === */
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: smaller;
+}
+
+.footer__column {
+    margin: 5%;
+    margin-bottom: 3%;
+}
+
+.footer p,
+.footer a {
+    font-size: medium;
+    font-weight: 400;
+    color: grey;
+}
+
+.socials {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin: 10px;
+}
+
+.logo img {
+    width: auto;
+    height: 35px;
+    filter: gray;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+}
+
+.logo img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+
+.footer a {
+    text-decoration: underline;
+}
+
+#footer__right a:hover {
+    color: var(--element1);
+}
