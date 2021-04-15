@@ -1,12 +1,19 @@
 # Sorting Visualiser 
 An application that visualises different kinds of sorting algorithms.
 
-## Technologies Used:
+## Technologies Used
+
  - HTML5
  - CSS
  - JavaScript
  - JQuery
  - NodeJS
+
+## To Do
+
+ - [] Program Quick sort
+ - [] Animate Merge sort
+ - [] Animate Quick sort
 
 ## Setup
 

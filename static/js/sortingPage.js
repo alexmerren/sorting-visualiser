@@ -1,36 +1,59 @@
-
 const SIZE_LIMIT = 300;
 const SIZE_DEFAULT = 50;
 const DELAY_DEFAULT = 5;
 
-$(document).ready(function() {
-    // Create an array when the page is loaded.
+$(document).ready(function () {
+    // When the page is loaded, create a new array/
     let arr = refreshArray();
     let delay = DELAY_DEFAULT;
 
+    // When the page is loaded add the default values into the settings boxes.
+    $("#arr-size").attr("placeholder", `Array Size: ${SIZE_DEFAULT}`);
+    $("#delay").attr("placeholder", `Delay Amount: ${DELAY_DEFAULT}`);
+
     // Function for pressing the refresh array button.
-    $("#refresh").on('click', function() { arr = refreshArray(); })
+    $("#refresh").on("click", () => {
+        arr = refreshArray();
+    });
 
     // Function for pressing enter on the refresh array button.
-    $("#arr-size").on('keypress', function(e) {
-        if ( e.which === 13 ) { arr = refreshArray(); }
-    });
-    
-    $("#delay").on('keypress', function(e) {
-        delay = $("#delay").val();
-        if (!delay && e.which === 13) { delay = DELAY_DEFAULT; }
-    });
-    // On click function for all of the different kinds of sorts.
-    $("#quick, #merge, #bubble, #selection, #insertion").on('click', function() {
-        let id = $(this).get(0).id;
-        if (id === "quick") { arr = quickSort(arr, delay); }
-        if (id === "merge") { arr = mergeSort(arr, 0, arr.length, delay); }
-        if (id === "bubble") { arr = bubbleSort(arr, delay); }
-        if (id === "selection") { arr = selectionSort(arr, delay); }
-        if (id === "insertion") { arr = insertionSort(arr, delay); }
-        console.log(arr);
+    $("#arr-size").on("keypress", function (e) {
+        if (e.which === 13) {
+            arr = refreshArray();
+        }
     });
 
+    // Function for setting the delay value.
+    $("#delay").on("keypress", function (e) {
+        delay = $("#delay").val();
+        if (!delay && e.which === 13) {
+            delay = DELAY_DEFAULT;
+        }
+    });
+
+    // On click function for all of the different kinds of sorts.
+    $("#quick, #merge, #bubble, #selection, #insertion").on(
+        "click",
+        function () {
+            let id = $(this).get(0).id;
+            if (id === "quick") {
+                arr = quickSort(arr, delay);
+            }
+            if (id === "merge") {
+                arr = mergeSort(arr, 0, arr.length, delay);
+            }
+            if (id === "bubble") {
+                arr = bubbleSort(arr, delay);
+            }
+            if (id === "selection") {
+                arr = selectionSort(arr, delay);
+            }
+            if (id === "insertion") {
+                arr = insertionSort(arr, delay);
+            }
+            console.log(arr);
+        }
+    );
 });
 
 // Function to create new array upon request, with specified attributes.
@@ -39,7 +62,9 @@ function refreshArray() {
 
     // Get the size from the input boxes in the HTML.
     size = $("#arr-size").val();
-    if (!size || size > SIZE_LIMIT) { size = SIZE_DEFAULT; }
+    if (!size || size > SIZE_LIMIT) {
+        size = SIZE_DEFAULT;
+    }
 
     // Create a new array with specified limits and size.
     arr = generateArray(size, 100, 500);
@@ -63,23 +88,20 @@ function generateArray(length, min, max) {
 
 // Function to create div's with height of value in array.
 function drawArray(arr) {
-    $target = $('.canvas');
     let height, width, element, i;
-    // Empty the canvas element so that we can add the new values.
+    $target = $(".canvas");
     $target.empty();
 
     for (i = 0; i < arr.length; ++i) {
         height = arr[i];
-        width = $('.canvas').width() / arr.length
-        
-        // Create div's with a height of the value of the random number generated.
+        width = $target.width() / arr.length;
+        // Create the bars with the calculated height and widths, and add the bars to the canvas..
         element = `<div class="bar" style="height:${height}px; width: ${width}px"></div>`;
-        // Add the new div's to the canvas.
         $target.append(element);
     }
 }
 
 // Function generate an interget between and including two limits.
 function genRandomInt(min, max) {
-    return Math.floor(Math.random() *  (max - min + 1) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
