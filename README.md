@@ -11,9 +11,9 @@ An application that visualises different kinds of sorting algorithms.
 
 ## To Do
 
- - [] Program Quick sort
- - [] Animate Merge sort
- - [] Animate Quick sort
+ - [ ] Program Quick sort
+ - [ ] Animate Merge sort
+ - [ ] Animate Quick sort
 
 ## Setup
 
