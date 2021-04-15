@@ -80,8 +80,8 @@ body {
 .header__buttons button {
     cursor: pointer;
     transition:
-        background-color 250ms,
-        border 250ms
+        background-color 100ms,
+        border 100ms 
     ;
 }
 
@@ -98,7 +98,6 @@ body {
 #arr-size {
     background-color: var(--surface3);
 }
-
 
 /* === Canvas === */
 
