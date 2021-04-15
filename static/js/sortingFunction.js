@@ -19,14 +19,11 @@ async function merge(arr, start, middle, end, delay) {
         // animate
         tempArr[i] = arr[start + i];
     }
-
     // merge subarrays
     i = 0;
     j = middle;
     k = start;
-
     while (i < len && j < end) {
-
         if (tempArr[i] <= arr[j]) {
             // animate tends move
             arr[k++] = tempArr[i++];
@@ -43,14 +40,14 @@ async function merge(arr, start, middle, end, delay) {
     }
 }
 
-function mergesort(arr, start, end, delay) {
+function mergeSort(arr, start, end, delay) {
     let middle;
     // If the arrays are bigger than size of 1, keep on dividing down.
     if (end - start > 1) {
         // Split the array into two halves and solve those two halves.
         middle = start + ((end - start) >> 1);
-        mergesort(arr, start, middle, delay);
-        mergesort(arr, middle, end, delay);
+        mergeSort(arr, start, middle, delay);
+        mergeSort(arr, middle, end, delay);
         // Merge the two arrays together.
         merge(arr, start, middle, end, delay);
     }
@@ -69,8 +66,8 @@ async function bubbleSort(arr, delay) {
         // to the right of the current element.
         for (j = 0; j < arr.length-i-1; ++j) {
             // Change the colour of the two values being compared to red.
-            changeColor(j, "var(--compare)", delay)
-            changeColor(j+1, "var(--compare)", delay)
+            changeColor(j, "var(--secondary)", delay)
+            changeColor(j+1, "var(--secondary)", delay)
 
             // Wait for the previous frame to end before
             // executing the next part of the loop.
@@ -94,7 +91,7 @@ async function bubbleSort(arr, delay) {
             changeColor(j+1, "var(--bar)", delay);
         }
         // Change the colour of the  sorted value to green.
-        changeColor(n - i - 1, "var(--done)", delay);
+        changeColor(n - i - 1, "var(--primary)", delay);
     }
     return arr;
 }
@@ -108,7 +105,7 @@ async function selectionSort(arr, delay) {
         // Set the swapping index to i.
         minIndex = i;
         // Set the colour of the minimum value to red.
-        changeColor(i, "var(--compare)", delay);
+        changeColor(i, "var(--secondary)", delay);
 
         // Go through the remaining subset of the array
         // to the right of the current element, and
@@ -117,7 +114,7 @@ async function selectionSort(arr, delay) {
 
             // Set the color of the other value we are 
             // comparing to the minimum value as red.
-            changeColor(j, "var(--compare)", delay);
+            changeColor(j, "var(--secondary)", delay);
 
             await new Promise(resolve => {
                 setTimeout(() => {
@@ -133,7 +130,7 @@ async function selectionSort(arr, delay) {
                 changeColor(minIndex, "var(--bar)", delay);
                 minIndex = j;
                 // Set the colour of the new minimum value.
-                changeColor(minIndex, "var(--compare)", delay);
+                changeColor(minIndex, "var(--secondary)", delay);
             }
 
         }
@@ -151,7 +148,7 @@ async function selectionSort(arr, delay) {
         changeColor(minIndex, "var(--bar)", delay);
         // The value at position i is the most recently sorted,
         // so set the colour of the value to green.
-        changeColor(i, "var(--done)", delay);
+        changeColor(i, "var(--primary)", delay);
     }
     return arr;
 }
@@ -165,30 +162,40 @@ async function insertionSort(arr, delay) {
         // Get the current element, and set that as the key.
         key = arr[i];
 
-        // Change the color of the currently biggest element. 
-        changeColor(i, "var(--compare)", delay);
+        changeColor(i, "var(--secondary)", delay);
+
+        await new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, delay);
+        });
 
         j = i -1;
+
         // Move along the array either until you hit the beginning 
         // or you find something that is bigger than it.
         while (j >= 0 && arr[j] > key) {
-
-            // Change the colour of the element that is being compared.
-            changeColor(j, "var(--compare)", delay);
-
             await new Promise(resolve => {
                 setTimeout(() => {
                     resolve();
                 }, delay);
             });
 
+            changeColor(j, "var(--secondary)", delay);
+            changeColor(j + 1, "var(--secondary)", delay);
+
             arr[j+1] = arr[j];
             // Move the element down the array.
             animate(j+1, j, delay);
             // Change the colour of the currently compared element to normal.
-            changeColor(j, "var(--bar)", delay);
+            changeColor(j + 1, "var(--bar)", delay);
             j = j-1;
         }
+        changeColor(j + 1, "var(--bar)", delay);
+        changeColor(j, "var(--bar)", delay);
+
+        changeColor(i, "var(--bar)", delay);
+
         arr[j+1] = key;
     }
 
@@ -200,7 +207,7 @@ async function insertionSort(arr, delay) {
                 resolve();
             }, delay);
         });
-        changeColor(i, "var(--done)", delay)
+        changeColor(i, "var(--primary)", delay)
     }
 
     return arr;

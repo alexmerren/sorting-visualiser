@@ -1,47 +1,33 @@
 
-const DEFAULT_SIZE = 50;
-let DELAY = 5;
+const SIZE_LIMIT = 300;
+const SIZE_DEFAULT = 50;
+const DELAY_DEFAULT = 5;
 
 $(document).ready(function() {
     // Create an array when the page is loaded.
     let arr = refreshArray();
+    let delay = DELAY_DEFAULT;
 
     // Function for pressing the refresh array button.
-    $("#refresh").on('click', function() {
-        arr = refreshArray();
-    })
+    $("#refresh").on('click', function() { arr = refreshArray(); })
 
     // Function for pressing enter on the refresh array button.
     $("#arr-size").on('keypress', function(e) {
-        if (e.which === 13) {
-            arr = refreshArray();
-        }
+        if ( e.which === 13 ) { arr = refreshArray(); }
     });
     
     $("#delay").on('keypress', function(e) {
-        if (e.which === 13) {
-            if ($("#delay").val() === undefined) { return }
-            DELAY = $("#delay").val();
-        }
+        delay = $("#delay").val();
+        if (!delay && e.which === 13) { delay = DELAY_DEFAULT; }
     });
     // On click function for all of the different kinds of sorts.
     $("#quick, #merge, #bubble, #selection, #insertion").on('click', function() {
         let id = $(this).get(0).id;
-        if (id === "quick") {
-            arr = quickSort(arr, DELAY);
-        }
-        if (id === "merge") {
-            arr = mergesort(arr, 0, arr.length, DELAY);
-        }
-        if (id === "bubble") {
-            arr = bubbleSort(arr, DELAY);
-        }
-        if (id === "selection") {
-            arr = selectionSort(arr, DELAY);
-        }
-        if (id === "insertion") {
-            arr = insertionSort(arr, DELAY);
-        }
+        if (id === "quick") { arr = quickSort(arr, delay); }
+        if (id === "merge") { arr = mergeSort(arr, 0, arr.length, delay); }
+        if (id === "bubble") { arr = bubbleSort(arr, delay); }
+        if (id === "selection") { arr = selectionSort(arr, delay); }
+        if (id === "insertion") { arr = insertionSort(arr, delay); }
         console.log(arr);
     });
 
@@ -49,21 +35,14 @@ $(document).ready(function() {
 
 // Function to create new array upon request, with specified attributes.
 function refreshArray() {
-    // Set the default amount to 200.
-    let size = DEFAULT_SIZE;
-    let limit = 300;
+    let size, arr;
 
-    // If the field is empty or bigger than the limit, don't do anything.
-    if (  !$("#arr-size").val() ) {}
-    else if ( $("#arr-size").val() > limit ) {
-        $("#arr-size").val(size); 
-    } else {
-        size = $("#arr-size").val();
-    }
+    // Get the size from the input boxes in the HTML.
+    size = $("#arr-size").val();
+    if (!size || size > SIZE_LIMIT) { size = SIZE_DEFAULT; }
 
-    // Generate a new array with given limits and size,
-    // then draw that array in the html.
-    let arr = generateArray(size, 100, 500);
+    // Create a new array with specified limits and size.
+    arr = generateArray(size, 100, 500);
     drawArray(arr);
 
     return arr;
@@ -72,11 +51,10 @@ function refreshArray() {
 // Function to generate an array with different specified attributes.
 function generateArray(length, min, max) {
     let arr = [];
+    let number, i;
 
-    for (let i = 0; i < length; ++i) {
-        // Generate a random number from the method below 
-        // and add it to the array.
-        let number = genRandomInt(min, max);
+    for (i = 0; i < length; ++i) {
+        number = genRandomInt(min, max);
         arr.push(number);
     }
 
@@ -86,14 +64,16 @@ function generateArray(length, min, max) {
 // Function to create div's with height of value in array.
 function drawArray(arr) {
     $target = $('.canvas');
-    let value, element;
+    let height, width, element, i;
     // Empty the canvas element so that we can add the new values.
     $target.empty();
 
-    for (let i = 0; i < arr.length; ++i) {
-        value = arr[i];
+    for (i = 0; i < arr.length; ++i) {
+        height = arr[i];
+        width = $('.canvas').width() / arr.length
+        
         // Create div's with a height of the value of the random number generated.
-        element = `<div class="bar" style="height:${value}px;"></div>`;
+        element = `<div class="bar" style="height:${height}px; width: ${width}px"></div>`;
         // Add the new div's to the canvas.
         $target.append(element);
     }

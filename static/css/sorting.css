@@ -8,8 +8,6 @@
     --primary: #C573D8;
     --secondary: #E2743E;
     --tertiary: #BCA79D;
-    --compare: #FF0000;
-    --done: #00FF00;
     --bar: #B4A7B7;
 }
 
@@ -53,8 +51,8 @@ hr {
 
 #title {
     padding: 0.5em;
-    font-size: 2.5rem;
-    font-weight: 500;
+    font-size: 2rem;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -63,8 +61,10 @@ hr {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: var(--surface2);
+    background-color: var(--surface3);
     border-radius: 1em;
+    padding: 0 1em;
+    padding-bottom: 1em;
 }
 
 .options button,
@@ -99,7 +99,7 @@ hr {
 
 
 .options input[type="number"] {
-    background-color: var(--surface3);
+    background-color: var(--surface2);
     padding: 1em 0;
     text-indent: 1em;
 }
@@ -120,7 +120,7 @@ input[type=number] {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 0 1em;
+    margin: 0 2em;
     padding: 1em;
 }
 
@@ -128,13 +128,13 @@ input[type=number] {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: var(--surface2);
+    background-color: var(--surface3);
     border-radius: 1em;
     margin-left: 1em;
-    padding: 0 1em;
     padding-bottom: 1em;
     overflow: hidden;
     flex-grow: 1;
+    padding: 0 0.5em;
 }
 
 .bar {
