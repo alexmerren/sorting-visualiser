@@ -5,15 +5,17 @@
     --element1: #111111;
     --element2: #222222;
     --element3: #333333;
-    --primary: #f44336;
-    --secondary: #448aff;
-    --tertiary: #00a337;
+    --primary: #C573D8;
+    --secondary: #E2743E;
+    --tertiary: #BCA79D;
+    --compare: #FF0000;
+    --done: #00FF00;
+    --bar: #B4A7B7;
 }
 
 /* == Global Styles === */
 body {
     background: var(--surface1);
-    margin: 0;
 }
 
 * {
@@ -27,57 +29,61 @@ body {
     padding: 0;
 }
 
+h3 {
+    font-weight: 400;
+    padding: 0.5em;
+}
+
+h3:first-of-type {
+    padding-top: 1em;
+}
+
+hr {
+    width: 3em;
+    margin-bottom: 0.5em;
+}
+
 /* === Header === */
 
 .header {
     width: 100%;
-    background-color: var(--surface2);
-    padding-bottom: 2em;
+    background-color: var(--surface3);
 }
+
 
 #title {
-    padding-top: 1em;
-    padding-bottom: 0.5em;
-    font-size: 3rem;
+    padding: 0.5em;
+    font-size: 2.5rem;
     font-weight: 500;
     text-align: center;
-    background-image: linear-gradient(45deg, var(--primary), var(--secondary));
-    background-size: 100%;
-    background-repeat: repeat;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-background-clip: text;
-    -moz-text-fill-color: transparent;
 }
 
-.theme-toggle {
-    float: right;
-    margin: 2%;
-}
-
-.header__buttons {
+.options {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    background-color: var(--surface2);
+    border-radius: 1em;
 }
 
-.header__buttons button,
-#arr-size {
+.options button,
+.options input {
     background-color: var(--surface2);
     border: 1px solid var(--element3);
     border-radius: 10rem;
     margin: 0.5rem;
     padding: 1rem;
+    font-size: 1rem;
     font-weight: 400;
+    min-width: 20ch;
 }
 
-.header__buttons button:focus {
+.options button:focus {
     outline: 0;
 }
 
-.header__buttons button {
+.options button {
     cursor: pointer;
     transition:
         background-color 100ms,
@@ -85,34 +91,54 @@ body {
     ;
 }
 
-.header__buttons button:hover {
+.options button:focus,
+.options button:hover {
     background-color: var(--tertiary);
     border: 1px solid var(--tertiary);
 }
 
-.header__buttons button:focus {
-    background-color: var(--secondary);
-    border: 1px solid var(--secondary);
+
+.options input[type="number"] {
+    background-color: var(--surface3);
+    padding: 1em 0;
+    text-indent: 1em;
 }
 
-#arr-size {
-    background-color: var(--surface3);
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 /* === Canvas === */
+
+.options-canvas-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0 1em;
+    padding: 1em;
+}
 
 .canvas {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
-    position: relative;
-    max-width: 90%;
-    margin: auto;
+    background-color: var(--surface2);
+    border-radius: 1em;
+    margin-left: 1em;
+    padding: 0 1em;
+    padding-bottom: 1em;
+    overflow: hidden;
+    flex-grow: 1;
 }
 
 .bar {
-    background-color: var(--element3);
+    background-color: var(--bar);
     width: 10px;
     margin: 0 1px;
 }

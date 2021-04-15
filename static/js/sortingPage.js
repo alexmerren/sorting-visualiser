@@ -1,10 +1,9 @@
 
-const DEFAULT_SIZE = 30;
-const DELAY = 5;
+const DEFAULT_SIZE = 50;
+let DELAY = 5;
 
 $(document).ready(function() {
     // Create an array when the page is loaded.
-    $("#arr-size").attr("value", DEFAULT_SIZE);
     let arr = refreshArray();
 
     // Function for pressing the refresh array button.
@@ -19,6 +18,12 @@ $(document).ready(function() {
         }
     });
     
+    $("#delay").on('keypress', function(e) {
+        if (e.which === 13) {
+            if ($("#delay").val() === undefined) { return }
+            DELAY = $("#delay").val();
+        }
+    });
     // On click function for all of the different kinds of sorts.
     $("#quick, #merge, #bubble, #selection, #insertion").on('click', function() {
         let id = $(this).get(0).id;
@@ -26,7 +31,7 @@ $(document).ready(function() {
             arr = quickSort(arr, DELAY);
         }
         if (id === "merge") {
-            arr = mergeSort(arr, DELAY);
+            arr = mergesort(arr, 0, arr.length, DELAY);
         }
         if (id === "bubble") {
             arr = bubbleSort(arr, DELAY);
@@ -46,7 +51,7 @@ $(document).ready(function() {
 function refreshArray() {
     // Set the default amount to 200.
     let size = DEFAULT_SIZE;
-    let limit = 500;
+    let limit = 300;
 
     // If the field is empty or bigger than the limit, don't do anything.
     if (  !$("#arr-size").val() ) {}
