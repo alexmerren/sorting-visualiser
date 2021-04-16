@@ -1,5 +1,12 @@
 /* === Quick Sort === */
 
+async function quickSortWrapper(arr, start, end, delay) {
+    await quickSort(arr, start, end, delay);
+    for (i = start; i < end + 1; i++) {
+        await changeColor(i, "var(--primary)", delay);
+    }
+} 
+
 async function quickSort(arr, start, end, delay) {
     // If the array given to the quick sort function
     // is less than one, that means that it has
@@ -14,25 +21,20 @@ async function quickSort(arr, start, end, delay) {
     // Recursively apply the same logic to the left and right subarrays
     await quickSort(arr, start, index - 1, delay);
     await quickSort(arr, index + 1, end, delay);
-
-    // for (i = start; i < end + 1; i++) {
-    //     await changeColor(i, "var(--primary)", delay);
-    // }
 }
 
 async function partition(arr, start, end, delay) {
     let startIndex, endValue, i;
 
     endValue = arr[end];
-    startIndex = start; 
+    startIndex = start;
 
     await changeColor(startIndex, "var(--secondary)", delay);
-    await changeColor(end, "var(--secondary)", delay);
+    changeColor(end, "var(--secondary)", delay);
     // Go through the array and swap the elements
     // if the current element is smaller than the pivot value.
     for (i = start; i < end; i++) {
-
-        await changeColor(i, "var(--secondary)", delay);
+        changeColor(i, "var(--secondary)", delay);
 
         if (arr[i] < endValue) {
             // Swapping elements
@@ -49,7 +51,7 @@ async function partition(arr, start, end, delay) {
 
         changeColor(i, "var(--bar)", delay);
     }
-    
+
     // Putting the pivot value in the middle
     temp = arr[startIndex];
     arr[startIndex] = arr[end];
@@ -65,14 +67,14 @@ async function partition(arr, start, end, delay) {
 
 async function cocktailSort(arr, start, end, delay) {
     let minIndex, maxIndex, middle, i;
-    middle = Math.floor((arr.length) / 2);
+    middle = Math.floor(arr.length / 2);
 
     // Set the biggest value as the leftmost value.
     maxIndex = start;
     await changeColor(maxIndex, "var(--secondary)", delay);
     // Go through the rest of the array for bigger values.
     for (i = start; i <= end; i++) {
-        if ( arr[i] >= arr[maxIndex] ) {
+        if (arr[i] >= arr[maxIndex]) {
             // Set the current index as the biggest value
             // if the current index is bigger than the biggest value.
             changeColor(maxIndex, "var(--bar)", delay);
@@ -93,7 +95,7 @@ async function cocktailSort(arr, start, end, delay) {
     minIndex = end;
     await changeColor(minIndex, "var(--secondary)", delay);
     for (i = end; i >= start; i--) {
-        if ( arr[i] <= arr[minIndex] ) {
+        if (arr[i] <= arr[minIndex]) {
             changeColor(minIndex, "var(--bar)", delay);
             minIndex = i;
             changeColor(minIndex, "var(--secondary)", delay);
@@ -103,14 +105,16 @@ async function cocktailSort(arr, start, end, delay) {
     // Swap the smallest value with the leftmost value.
     temp = arr[minIndex];
     arr[minIndex] = arr[start];
-    arr[start] = temp; 
+    arr[start] = temp;
     changeColor(minIndex, "var(--bar)", delay);
     changeColor(start, "var(--secondary)", delay);
     await animate(minIndex, start, delay);
-   
+
     // When the end of the sorting is reached,
     // mark all the bars ars done.
-    if ( end - start <= 1 ) {
+    if (end - start <= 1) {
+        changeColor(middle, "var(--bar)", delay);
+        changeColor(middle - 1, "var(--bar)", delay);
         for (i = 0; i < arr.length; ++i) {
             await changeColor(i, "var(--primary)", delay);
         }
@@ -154,8 +158,9 @@ async function bubbleSort(arr, delay) {
             changeColor(j, "var(--bar)", delay);
             changeColor(j + 1, "var(--bar)", delay);
         }
-        // Change the colour of the  sorted value to green.
-        changeColor(n - i - 1, "var(--primary)", delay);
+    }
+    for (i = 0; i < arr.length; ++i) {
+        await changeColor(i, "var(--primary)", delay);
     }
     return arr;
 }
@@ -202,9 +207,9 @@ async function selectionSort(arr, delay) {
         }
         // Change the colour of the old minimum index back to default.
         changeColor(minIndex, "var(--bar)", delay);
-        // The value at position i is the most recently sorted,
-        // so set the colour of the value to green.
-        changeColor(i, "var(--primary)", delay);
+    }
+    for (i = 0; i < arr.length; ++i) {
+        await changeColor(i, "var(--primary)", delay);
     }
     return arr;
 }
@@ -225,7 +230,6 @@ async function insertionSort(arr, delay) {
         // Move along the array either until you hit the beginning
         // or you find something that is bigger than it.
         while (j >= 0 && arr[j] > key) {
-
             changeColor(i, "var(--bar)", delay);
             changeColor(j, "var(--secondary)", delay);
 

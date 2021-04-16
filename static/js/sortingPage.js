@@ -1,6 +1,6 @@
 const SIZE_LIMIT = 300;
-const SIZE_DEFAULT = 25;
-const DELAY_DEFAULT = 100;
+const SIZE_DEFAULT = 50;
+const DELAY_DEFAULT = 5;
 
 $(document).ready(function () {
     // When the page is loaded, create a new array/
@@ -37,7 +37,7 @@ $(document).ready(function () {
         function () {
             let id = $(this).get(0).id;
             if (id === "quick") {
-                arr = quickSort(arr, 0, arr.length - 1, delay);
+                arr = quickSortWrapper(arr, 0, arr.length - 1, delay);
             }
             if (id === "cocktail") {
                 arr = cocktailSort(arr, 0, arr.length - 1, delay);
@@ -51,7 +51,6 @@ $(document).ready(function () {
             if (id === "insertion") {
                 arr = insertionSort(arr, delay);
             }
-            console.log(arr);
         }
     );
 });
@@ -67,7 +66,7 @@ function refreshArray() {
     }
 
     // Create a new array with specified limits and size.
-    arr = generateArray(size, 100, 500);
+    arr = generateArray(size, 100, 650);
     drawArray(arr);
 
     return arr;

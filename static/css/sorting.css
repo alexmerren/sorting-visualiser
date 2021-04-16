@@ -1,5 +1,5 @@
 :root {
-    --surface1: #e6e6e6;
+    --surface1: #efefef;
     --surface2: #f2f2f2;
     --surface3: #ffffff;
     --element1: #111111;
@@ -28,17 +28,13 @@ body {
 }
 
 h3 {
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 1.3em;
     padding: 0.5em;
 }
 
 h3:first-of-type {
     padding-top: 1em;
-}
-
-hr {
-    width: 3em;
-    margin-bottom: 0.5em;
 }
 
 /* === Header === */
@@ -56,22 +52,28 @@ hr {
     text-align: center;
 }
 
-.options {
+.options,
+.settings {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background-color: var(--surface3);
-    border-radius: 1em;
+    border-radius: 2em;
     padding: 0 1em;
     padding-bottom: 1em;
 }
 
+.settings {
+    margin-top: 1em;
+}
+
 .options button,
-.options input {
+.settings input {
     background-color: var(--surface2);
+    color: var(--element3);
     border: 1px solid var(--element3);
-    border-radius: 10rem;
+    border-radius: 2em;
     margin: 0.5rem;
     padding: 1rem;
     font-size: 1rem;
@@ -97,8 +99,7 @@ hr {
     border: 1px solid var(--tertiary);
 }
 
-
-.options input[type="number"] {
+.settings input[type="number"] {
     background-color: var(--surface2);
     padding: 1em 0;
     text-indent: 1em;
@@ -120,7 +121,8 @@ input[type=number] {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 0 2em;
+    max-width: 80em;
+    margin: auto;
     padding: 1em;
 }
 
