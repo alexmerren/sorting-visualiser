@@ -1,6 +1,6 @@
 const SIZE_LIMIT = 300;
-const SIZE_DEFAULT = 50;
-const DELAY_DEFAULT = 5;
+const SIZE_DEFAULT = 25;
+const DELAY_DEFAULT = 100;
 
 $(document).ready(function () {
     // When the page is loaded, create a new array/
@@ -32,15 +32,15 @@ $(document).ready(function () {
     });
 
     // On click function for all of the different kinds of sorts.
-    $("#quick, #merge, #bubble, #selection, #insertion").on(
+    $("#quick, #cocktail, #bubble, #selection, #insertion").on(
         "click",
         function () {
             let id = $(this).get(0).id;
             if (id === "quick") {
-                arr = quickSort(arr, delay);
+                arr = quickSort(arr, 0, arr.length - 1, delay);
             }
-            if (id === "merge") {
-                arr = mergeSort(arr, 0, arr.length, delay);
+            if (id === "cocktail") {
+                arr = cocktailSort(arr, 0, arr.length - 1, delay);
             }
             if (id === "bubble") {
                 arr = bubbleSort(arr, delay);

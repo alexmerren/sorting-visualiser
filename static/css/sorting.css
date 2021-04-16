@@ -132,9 +132,9 @@ input[type=number] {
     border-radius: 1em;
     margin-left: 1em;
     padding-bottom: 1em;
+    padding: 0 0.5em;
     overflow: hidden;
     flex-grow: 1;
-    padding: 0 0.5em;
 }
 
 .bar {

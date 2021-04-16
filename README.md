@@ -9,12 +9,6 @@ An application that visualises different kinds of sorting algorithms.
  - JQuery
  - NodeJS
 
-## To Do
-
- - [ ] Program Quick sort
- - [ ] Animate Merge sort
- - [ ] Animate Quick sort
-
 ## Setup
 
 Then, to start the website, run this executable file:
