@@ -1,5 +1,8 @@
 # Sorting Visualiser 
+
 An application that visualises different kinds of sorting algorithms.
+
+You can view this project live [here!](http://www.alexmerren.uk/sorting).
 
 ## Technologies Used
 
