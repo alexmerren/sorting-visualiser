@@ -1,6 +1,6 @@
 const SIZE_LIMIT = 300;
 const SIZE_DEFAULT = 50;
-const DELAY_DEFAULT = 5;
+const DELAY_DEFAULT = 2;
 
 $(document).ready(function () {
     // When the page is loaded, create a new array/

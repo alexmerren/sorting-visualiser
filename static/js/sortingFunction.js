@@ -2,9 +2,9 @@
 
 async function quickSortWrapper(arr, start, end, delay) {
     await quickSort(arr, start, end, delay);
-    for (i = start; i < end + 1; i++) {
-        await changeColor(i, "var(--primary)", delay);
-    }
+    //for (i = start; i < end + 1; i++) {
+        //await changeColor(i, "var(--primary)", delay);
+    //}
 } 
 
 async function quickSort(arr, start, end, delay) {
@@ -21,6 +21,9 @@ async function quickSort(arr, start, end, delay) {
     // Recursively apply the same logic to the left and right subarrays
     await quickSort(arr, start, index - 1, delay);
     await quickSort(arr, index + 1, end, delay);
+    for (i = start; i <= end; i++) {
+        await changeColor(i, "var(--primary)", delay);
+    }
 }
 
 async function partition(arr, start, end, delay) {
@@ -29,12 +32,12 @@ async function partition(arr, start, end, delay) {
     endValue = arr[end];
     startIndex = start;
 
-    await changeColor(startIndex, "var(--secondary)", delay);
-    changeColor(end, "var(--secondary)", delay);
+    changeColor(startIndex, "var(--secondary)", delay);
+    await changeColor(end, "var(--secondary)", delay);
     // Go through the array and swap the elements
     // if the current element is smaller than the pivot value.
     for (i = start; i < end; i++) {
-        changeColor(i, "var(--secondary)", delay);
+        await changeColor(i, "var(--secondary)", delay);
 
         if (arr[i] < endValue) {
             // Swapping elements
@@ -42,9 +45,9 @@ async function partition(arr, start, end, delay) {
             arr[i] = arr[startIndex];
             arr[startIndex] = temp;
 
-            changeColor(i, "var(--bar)", delay);
+            await changeColor(i, "var(--bar)", delay);
 
-            await animate(i, startIndex, delay);
+            animate(i, startIndex, delay);
             // Moving to next element
             startIndex++;
         }
@@ -58,7 +61,7 @@ async function partition(arr, start, end, delay) {
     arr[end] = temp;
     changeColor(end, "var(--bar)", delay);
     changeColor(startIndex, "var(--bar)", delay);
-    await animate(startIndex, end, delay);
+    animate(startIndex, end, delay);
 
     return startIndex;
 }
@@ -69,32 +72,35 @@ async function cocktailSort(arr, start, end, delay) {
     let minIndex, maxIndex, middle, i;
     middle = Math.floor(arr.length / 2);
 
-    // Set the biggest value as the leftmost value.
+    // Start by setting the start as the biggest seen value, and go through
+    // the list to find the biggest value.
     maxIndex = start;
-    await changeColor(maxIndex, "var(--secondary)", delay);
-    // Go through the rest of the array for bigger values.
-    for (i = start; i <= end; i++) {
+    for (i = maxIndex; i <= end; i++) {
+        changeColor(i, "var(--secondary)", delay);
+        if (i != start) {
+            await changeColor(i-1, "var(--bar)", delay);
+        }
         if (arr[i] >= arr[maxIndex]) {
-            // Set the current index as the biggest value
-            // if the current index is bigger than the biggest value.
             changeColor(maxIndex, "var(--bar)", delay);
             maxIndex = i;
             changeColor(maxIndex, "var(--secondary)", delay);
         }
     }
 
-    // Swap the rightmost value (end) and the biggest value.
+    // Swap the rightmost value and the biggest value and animate the swap.
     temp = arr[maxIndex];
     arr[maxIndex] = arr[end];
     arr[end] = temp;
-    changeColor(maxIndex, "var(--bar)", delay);
-    changeColor(end, "var(--secondary)", delay);
-    await animate(maxIndex, end, delay);
+    animate(maxIndex, end, delay);
+    changeColor(end, "var(--primary)", delay);
 
     // Do the same as before but with the smallest value.
-    minIndex = end;
-    await changeColor(minIndex, "var(--secondary)", delay);
-    for (i = end; i >= start; i--) {
+    minIndex = end-1;
+    for (i = minIndex; i >= start; i--) {
+        changeColor(i, "var(--secondary)", delay);
+        if (i != minIndex) {
+            await changeColor(i+1, "var(--bar)", delay);
+        }
         if (arr[i] <= arr[minIndex]) {
             changeColor(minIndex, "var(--bar)", delay);
             minIndex = i;
@@ -102,28 +108,20 @@ async function cocktailSort(arr, start, end, delay) {
         }
     }
 
-    // Swap the smallest value with the leftmost value.
+    // Swap the smallest value with the leftmost value in the array and animate the swap.
     temp = arr[minIndex];
     arr[minIndex] = arr[start];
     arr[start] = temp;
-    changeColor(minIndex, "var(--bar)", delay);
-    changeColor(start, "var(--secondary)", delay);
-    await animate(minIndex, start, delay);
+    animate(minIndex, start, delay);
+    changeColor(start, "var(--primary)", delay);
 
     // When the end of the sorting is reached,
-    // mark all the bars ars done.
+    // mark all the bars as done.
     if (end - start <= 1) {
-        changeColor(middle, "var(--bar)", delay);
-        changeColor(middle - 1, "var(--bar)", delay);
-        for (i = 0; i < arr.length; ++i) {
-            await changeColor(i, "var(--primary)", delay);
-        }
+        changeColor(middle, "var(--primary)", delay);
+        changeColor(middle-1, "var(--primary)", delay);
         return arr;
     }
-
-    // Reset the start and end colours.
-    changeColor(start, "var(--bar)", delay);
-    changeColor(end, "var(--bar)", delay);
 
     // Call the function again but not on the furthest values.
     cocktailSort(arr, start + 1, end - 1, delay);
@@ -158,9 +156,7 @@ async function bubbleSort(arr, delay) {
             changeColor(j, "var(--bar)", delay);
             changeColor(j + 1, "var(--bar)", delay);
         }
-    }
-    for (i = 0; i < arr.length; ++i) {
-        await changeColor(i, "var(--primary)", delay);
+        await changeColor(arr.length - i - 1, "var(--primary)", delay);
     }
     return arr;
 }
@@ -207,8 +203,6 @@ async function selectionSort(arr, delay) {
         }
         // Change the colour of the old minimum index back to default.
         changeColor(minIndex, "var(--bar)", delay);
-    }
-    for (i = 0; i < arr.length; ++i) {
         await changeColor(i, "var(--primary)", delay);
     }
     return arr;
