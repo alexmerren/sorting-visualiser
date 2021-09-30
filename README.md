@@ -1,37 +1,24 @@
 # Sorting Visualiser 
 
-An application that visualises different kinds of sorting algorithms.
+An application that visualises different methods used by many sorting algorithms.
 
-You can view this project live [here!](http://www.alexmerren.uk/sorting).
+You can view this project live [here!](http://www.alexmerren.uk/sorting)
 
-## Technologies Used
+## How to start
 
- - HTML5
- - CSS
- - JavaScript
- - JQuery
- - NodeJS
+To start the project, you can run 
 
-## Setup
-
-Then, to start the website, run this executable file:
-
-```bash
-$ ./run
-```
+### `$ ./run`
 
 or run these commands:
 
-```bash
-$ npm install
-$ npm start
-```
+### `$ npm install`
 
-this will start the server.
+### `$ npm start`
 
 ## Usage
 
-To visit the server, go to:
+To visit the application, you can visit:
 
 ```
 localhost:8080
