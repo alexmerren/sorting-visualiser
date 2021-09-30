@@ -6,15 +6,15 @@ You can view this project live [here!](http://www.alexmerren.uk/sorting)
 
 ## How to start
 
-To start the project, you can run 
+To start the project, you can type: 
 
-### `$ ./run`
+### `./run`
 
 or run these commands:
 
-### `$ npm install`
+### `npm install`
 
-### `$ npm start`
+### `npm start`
 
 ## Usage
 
