@@ -7,7 +7,8 @@ app.use(express.static(__dirname + '/static'));
 
 // Tell the server to render ejs files
 app.set('trust proxy', true);
-app.set('view engine', 'ejs');
+app.set("view engine", "html");
+app.engine('.html', require('ejs').__express);
 
 // Opens up the server to the port specified above 
 app.listen(PORT, function () {
