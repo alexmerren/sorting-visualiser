@@ -40,7 +40,7 @@ $(document).ready(function () {
                 arr = quickSortWrapper(arr, 0, arr.length - 1, delay);
             }
             if (id === "cocktail") {
-                arr = cocktailSort(arr, 0, arr.length - 1, delay);
+                arr = cocktailSort(arr, delay);
             }
             if (id === "bubble") {
                 arr = bubbleSort(arr, delay);

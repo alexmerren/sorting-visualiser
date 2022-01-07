@@ -68,65 +68,50 @@ async function partition(arr, start, end, delay) {
 
 /* === Cocktail Sort === */
 
-async function cocktailSort(arr, start, end, delay) {
-    let minIndex, maxIndex, middle, i;
-    middle = Math.floor(arr.length / 2);
+async function cocktailSort(arr, delay) {
+    let swapped = false;
+    let n = arr.length
+    while (!swapped) {
+        swapped = false;
+        for (let i = 0; i <= arr.length - 1; i++) {
+            changeColor(i, "var(--secondary)", delay);
+            changeColor(i + 1, "var(--secondary)", delay);
 
-    // Start by setting the start as the biggest seen value, and go through
-    // the list to find the biggest value.
-    maxIndex = start;
-    for (i = maxIndex; i <= end; i++) {
-        changeColor(i, "var(--secondary)", delay);
-        if (i != start) {
-            await changeColor(i-1, "var(--bar)", delay);
+            if (arr[i] > arr[i+1]) {
+                let temp = arr[i];
+                arr[i] = arr[i+1];
+                arr[i+1] = temp;
+                swapped = true
+                await animate(i, i + 1, delay);
+            }
+
+            changeColor(i, "var(--bar)", delay);
+            changeColor(i + 1, "var(--bar)", delay);
         }
-        if (arr[i] >= arr[maxIndex]) {
-            changeColor(maxIndex, "var(--bar)", delay);
-            maxIndex = i;
-            changeColor(maxIndex, "var(--secondary)", delay);
+        if (!swapped)
+            break;
+        swapped = true;
+        for (let i = arr.length - 1; i > 0; i--) {
+            changeColor(i - 1, "var(--secondary)", delay);
+            changeColor(i, "var(--secondary)", delay);
+
+            if (arr[i-1] > arr[i]) {
+                var temp = arr[i-1];
+                arr[i-1] = arr[i];
+                arr[i] = temp;
+                swapped = false;
+                await animate(i - 1, i, delay);
+            }
+
+            changeColor(i - 1, "var(--bar)", delay);
+            changeColor(i, "var(--bar)", delay);
         }
     }
 
-    // Swap the rightmost value and the biggest value and animate the swap.
-    temp = arr[maxIndex];
-    arr[maxIndex] = arr[end];
-    arr[end] = temp;
-    animate(maxIndex, end, delay);
-    changeColor(end, "var(--primary)", delay);
-
-    // Do the same as before but with the smallest value.
-    minIndex = end-1;
-    for (i = minIndex; i >= start; i--) {
-        changeColor(i, "var(--secondary)", delay);
-        if (i != minIndex) {
-            await changeColor(i+1, "var(--bar)", delay);
-        }
-        if (arr[i] <= arr[minIndex]) {
-            changeColor(minIndex, "var(--bar)", delay);
-            minIndex = i;
-            changeColor(minIndex, "var(--secondary)", delay);
-        }
+    for (i = 0; i < arr.length; ++i) {
+        await changeColor(i, "var(--primary)", delay);
     }
-
-    // Swap the smallest value with the leftmost value in the array and animate the swap.
-    temp = arr[minIndex];
-    arr[minIndex] = arr[start];
-    arr[start] = temp;
-    animate(minIndex, start, delay);
-    changeColor(start, "var(--primary)", delay);
-
-    // When the end of the sorting is reached,
-    // mark all the bars as done.
-    if (end - start <= 1) {
-        changeColor(middle, "var(--primary)", delay);
-        changeColor(middle-1, "var(--primary)", delay);
-        return arr;
-    }
-
-    // Call the function again but not on the furthest values.
-    cocktailSort(arr, start + 1, end - 1, delay);
-
-    return arr;
+    return arr
 }
 
 /* === Bubble Sort === */
