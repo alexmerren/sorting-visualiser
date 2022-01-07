@@ -1,10 +1,7 @@
 /* === Quick Sort === */
 
-async function quickSortWrapper(arr, start, end, delay) {
-    await quickSort(arr, start, end, delay);
-    //for (i = start; i < end + 1; i++) {
-        //await changeColor(i, "var(--primary)", delay);
-    //}
+async function quickSortWrapper(arr, delay) {
+    await quickSort(arr, 0, arr.length - 1, delay);
 } 
 
 async function quickSort(arr, start, end, delay) {

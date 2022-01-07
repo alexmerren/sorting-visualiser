@@ -35,21 +35,22 @@ $(document).ready(function () {
     $("#quick, #cocktail, #bubble, #selection, #insertion").on(
         "click",
         function () {
-            let id = $(this).get(0).id;
-            if (id === "quick") {
-                arr = quickSortWrapper(arr, 0, arr.length - 1, delay);
-            }
-            if (id === "cocktail") {
-                arr = cocktailSort(arr, delay);
-            }
-            if (id === "bubble") {
-                arr = bubbleSort(arr, delay);
-            }
-            if (id === "selection") {
-                arr = selectionSort(arr, delay);
-            }
-            if (id === "insertion") {
-                arr = insertionSort(arr, delay);
+            switch ($(this).get(0).id) {
+                case "quick":
+                    arr = quickSortWrapper(arr, delay);
+                    break;
+                case "cocktail":
+                    arr = cocktailSort(arr, delay);
+                    break;
+                case "bubble":
+                    arr = bubbleSort(arr, delay);
+                    break;
+                case "selection":
+                    arr = selectionSort(arr, delay);
+                    break;
+                case "insertion":
+                    arr = insertionSort(arr, delay);
+                    break;
             }
         }
     );
